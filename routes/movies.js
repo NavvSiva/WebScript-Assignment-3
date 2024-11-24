@@ -4,7 +4,6 @@ const Movie = require('../models/Movie');
 
 router.get('/', async (req, res) => {
     try {
-        // Fetch user-added movies
         const movies = await Movie.find({ source: "user" });
         res.render('movies', { movies }); // Render the watchlist page
     } catch (error) {
@@ -14,12 +13,12 @@ router.get('/', async (req, res) => {
 });
 
 
-// Render the Add Movie form
+// Add Movie form
 router.get('/add', (req, res) => {
-    res.render('addMovie'); // Ensure there is an addMovie.ejs template in the /views folder
+    res.render('addMovie'); 
 });
 
-// Route to add a new movie
+// Route to add
 router.post('/add', async (req, res) => {
     try {
         const { title, genre, status, releaseDate } = req.body;
@@ -40,7 +39,7 @@ router.post('/add', async (req, res) => {
 
 
 
-// Edit a movie (Update - Show Edit Form)
+// Edit a movie
 router.get('/edit/:id', async (req, res) => {
     try {
         const movie = await Movie.findById(req.params.id);
@@ -51,7 +50,7 @@ router.get('/edit/:id', async (req, res) => {
     }
 });
 
-// Update a movie (Update - Submit Edit Form)
+// Update a movie
 router.post('/edit/:id', async (req, res) => {
     try {
         const { title, genre, status, releaseDate } = req.body;
@@ -75,7 +74,7 @@ router.post('/delete/:id', async (req, res) => {
 });
 
 
-// Route for Public Movies Page
+// Public Movies Page
 router.get('/public-movies', async (req, res) => {
     try {
         const movies = await Movie.find({ source: "default" }); // Fetch default movies
