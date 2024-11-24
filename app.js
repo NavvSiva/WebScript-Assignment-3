@@ -24,8 +24,15 @@ app.get('/', (req, res) => {
     res.redirect('/movies'); // Redirect to /movies
 });
 
+app.get('/', (req, res) => {
+    res.render('index');
+});
+
+
 // Use movies routes
 app.use('/movies', movieRoutes);
+
+
 
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
