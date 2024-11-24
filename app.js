@@ -11,6 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 // Middleware to serve static files (CSS, images, JS)
 app.use(express.static('public'));
 
+// Connect to MongoDB
 mongoose.connection.once('open', () => {
     console.log('Connected to the database');
 });
@@ -19,21 +20,16 @@ mongoose.connection.once('open', () => {
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
-// Root route to redirect to movies list
+// Root route to render the home page
 app.get('/', (req, res) => {
-    res.redirect('/movies'); // Redirect to /movies
+    res.render('index'); // Render the home page
 });
 
-app.get('/', (req, res) => {
-    res.render('index');
-});
-
-
-// Use movies routes
+// Use movies routes for all /movies paths
 app.use('/movies', movieRoutes);
 
-
-
+// Start the server
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
+

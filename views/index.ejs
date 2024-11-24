@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Welcome to Movie Watchlist</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Movie Watchlist</title>
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <h1>Welcome to the Movie Watchlist App</h1>
-    <p>Manage your favorite movies easily with add, edit, and delete functionality.</p>
-    <nav>
-        <a href="/movies">View Movies</a>
-        <a href="/movies/add">Add a Movie</a>
-    </nav>
+    <%- include('partials/header') %>
+    <div class="container">
+        <h2>Welcome to the Movie Watchlist App</h2>
+        <p>Manage your favorite movies with ease!</p>
+        <a href="/movies" class="btn">View Movies</a>
+        <a href="/movies/add" class="btn">Add a Movie</a>
+    </div>
+    <%- include('partials/footer') %>
 </body>
 </html>

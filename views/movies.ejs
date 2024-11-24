@@ -7,11 +7,15 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <h1>My Movie Watchlist</h1>
+    <!-- Include Header Partial -->
+    <%- include('partials/header') %>
+
     <div class="container">
+        <h2>My Movie Watchlist</h2>
         <div style="text-align: center; margin-bottom: 1rem;">
-            <a href="/movies/add">Add Movie</a>
+            <a href="/movies/add" class="btn btn-primary">Add Movie</a>
         </div>
+
         <ul>
             <% if (movies.length > 0) { %>
                 <% movies.forEach(movie => { %>
@@ -24,7 +28,7 @@
                             <form action="/movies/edit/<%= movie._id %>" method="GET" style="display:inline;">
                                 <button type="submit">Edit</button>
                             </form>
-                            <form action="/movies/delete/<%= movie._id %>" method="POST" style="display:inline;">
+                            <form action="/movies/delete/<%= movie._id %>" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this movie?');">
                                 <button type="submit">Delete</button>
                             </form>
                         </div>
@@ -35,6 +39,8 @@
             <% } %>
         </ul>
     </div>
+
+    <!-- Include Footer Partial -->
+    <%- include('partials/footer') %>
 </body>
 </html>
-
