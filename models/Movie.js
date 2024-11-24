@@ -5,7 +5,7 @@ const movieSchema = new mongoose.Schema({
     genre: { type: String, required: true },
     status: { type: String, required: true },
     releaseDate: { type: Date, required: true },
-    source: { type: String, required: true } // Ensure the "source" field is included
+    source: { type: String, required: true } 
 });
 
 module.exports = mongoose.model('Movie', movieSchema);

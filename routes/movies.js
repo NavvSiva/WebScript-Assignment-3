@@ -23,7 +23,7 @@ router.post('/add', async (req, res) => {
     try {
         const { title, genre, status, releaseDate } = req.body;
 
-        // Log the incoming form data for debugging
+        
         console.log("Form Data Received:", req.body);
 
         // Create a new movie with the form data
@@ -38,8 +38,8 @@ router.post('/add', async (req, res) => {
         // Save the movie to the database
         await newMovie.save();
 
-        console.log("Movie successfully saved:", newMovie); // Debugging output
-        res.redirect('/movies'); // Redirect to the watchlist page
+        console.log("Movie successfully saved:", newMovie); 
+        res.redirect('/movies'); 
     } catch (error) {
         console.error('Error adding movie:', error);
         res.status(500).send('Error adding movie');
