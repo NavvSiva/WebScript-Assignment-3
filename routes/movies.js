@@ -4,14 +4,14 @@ const Movie = require('../models/Movie');
 
 router.get('/', async (req, res) => {
     try {
-        const movies = await Movie.find({ source: "user" });
-        res.render('movies', { movies }); // Render the watchlist page
+        const movies = await Movie.find({ source: "user" }); // Adjust query as needed
+        console.log("Fetched movies:", movies); // Debug log to confirm data
+        res.render('movies', { movies }); // Pass movies to the template
     } catch (error) {
-        console.error(error);
+        console.error('Error retrieving movies:', error);
         res.status(500).send('Error retrieving movies');
     }
 });
-
 
 // Add Movie form
 router.get('/add', (req, res) => {
@@ -22,20 +22,33 @@ router.get('/add', (req, res) => {
 router.post('/add', async (req, res) => {
     try {
         const { title, genre, status, releaseDate } = req.body;
+
+        // Log the incoming form data for debugging
+        console.log("Form Data Received:", req.body);
+
+        // Create a new movie with the form data
         const newMovie = new Movie({
             title,
             genre,
             status,
             releaseDate,
-            source: "user" // Mark as user-added
+            source: "user" // Ensure the source field is included
         });
+
+        // Save the movie to the database
         await newMovie.save();
-        res.redirect('/movies'); // Redirect back to the watchlist page
+
+        console.log("Movie successfully saved:", newMovie); // Debugging output
+        res.redirect('/movies'); // Redirect to the watchlist page
     } catch (error) {
-        console.error(error);
+        console.error('Error adding movie:', error);
         res.status(500).send('Error adding movie');
     }
 });
+
+
+
+
 
 
 
