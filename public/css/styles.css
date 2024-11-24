@@ -1,0 +1,78 @@
+/* General Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: yellow;
+}
+
+/* Page Header */
+h1 {
+    text-align: center;
+    background: #333;
+    color: white;
+    margin: 0;
+    padding: 1rem 0;
+}
+
+/* Container for Movie List */
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+}
+
+/* Add Movie Button Styling */
+a {
+    text-decoration: none;
+    color: white;
+    background: #007BFF;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+a:hover {
+    background: #0056b3;
+}
+
+/* Movie List Styling */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f9f9f9;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+/* Buttons (Edit & Delete) Styling */
+button {
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    border: none;
+    background: #333;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background: #555;
+}
+
+/* No Movies Message */
+.no-movies {
+    text-align: center;
+    color: #555;
+}

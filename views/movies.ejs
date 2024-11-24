@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Movie Watchlist</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <h1>My Movie Watchlist</h1>
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 1rem;">
+            <a href="/movies/add">Add Movie</a>
+        </div>
+        <ul>
+            <% if (movies.length > 0) { %>
+                <% movies.forEach(movie => { %>
+                    <li>
+                        <div>
+                            <strong><%= movie.title %></strong> - <%= movie.genre %> - <%= movie.status %> - 
+                            <%= new Date(movie.releaseDate).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) %>
+                        </div>
+                        <div>
+                            <form action="/movies/edit/<%= movie._id %>" method="GET" style="display:inline;">
+                                <button type="submit">Edit</button>
+                            </form>
+                            <form action="/movies/delete/<%= movie._id %>" method="POST" style="display:inline;">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </div>
+                    </li>
+                <% }); %>
+            <% } else { %>
+                <p class="no-movies">No movies found! <a href="/movies/add">Add your first movie</a>.</p>
+            <% } %>
+        </ul>
+    </div>
+</body>
+</html>
+

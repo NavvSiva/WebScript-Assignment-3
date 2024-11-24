@@ -1,20 +1,32 @@
-const express = require('express'); // Import Express
-const mongoose = require('./config/db'); // Import your database connection
+const express = require('express');
+const mongoose = require('./config/db');
+const movieRoutes = require('./routes/movies');
 
-const app = express(); // Initialize the Express app
-const PORT = process.env.PORT || 3000; // Set the port for your application
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-// Log when the database connection is established
+// Middleware to parse form data
+app.use(express.urlencoded({ extended: true }));
+
+// Middleware to serve static files (CSS, images, JS)
+app.use(express.static('public'));
+
 mongoose.connection.once('open', () => {
     console.log('Connected to the database');
 });
 
-// Basic route to test the server
+// Set EJS as the templating engine
+app.set('view engine', 'ejs');
+app.set('views', './views');
+
+// Root route to redirect to movies list
 app.get('/', (req, res) => {
-    res.send('Welcome to the Movie Watchlist Application!');
+    res.redirect('/movies'); // Redirect to /movies
 });
 
-// Start the server
+// Use movies routes
+app.use('/movies', movieRoutes);
+
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
