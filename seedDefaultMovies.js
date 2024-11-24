@@ -16,10 +16,10 @@ const seedDefaultMovies = async () => {
             { title: "Ant-Man", genre: "Superhero", releaseDate: "2015-07-17", source: "default" }
         ];
 
-        // Clear existing default movies
+
         await Movie.deleteMany({ source: "default" });
 
-        // Add new default movies
+
         await Movie.insertMany(defaultMovies);
 
         console.log("Default movies added successfully!");
