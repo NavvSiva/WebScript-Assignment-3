@@ -15,12 +15,11 @@
                 <% movies.forEach(movie => { %>
                     <li>
                         <strong><%= movie.title %></strong> - <%= movie.genre %> - 
-                        <%= movie.status %> - 
                         <%= new Date(movie.releaseDate).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) %>
                     </li>
                 <% }); %>
             <% } else { %>
-                <p>No movies found in the database. Add some movies!</p>
+                <p>No public movies found in the database.</p>
             <% } %>
         </ul>
     </div>

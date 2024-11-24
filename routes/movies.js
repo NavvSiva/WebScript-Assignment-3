@@ -2,34 +2,43 @@ const express = require('express');
 const router = express.Router();
 const Movie = require('../models/Movie');
 
-// Get all movies (Read)
 router.get('/', async (req, res) => {
     try {
-        const movies = await Movie.find();
-        res.render('movies', { movies }); // Render the EJS template with movie data
+        // Fetch user-added movies
+        const movies = await Movie.find({ source: "user" });
+        res.render('movies', { movies }); // Render the watchlist page
     } catch (error) {
         console.error(error);
         res.status(500).send('Error retrieving movies');
     }
 });
 
+
 // Render the Add Movie form
 router.get('/add', (req, res) => {
     res.render('addMovie'); // Ensure there is an addMovie.ejs template in the /views folder
 });
 
-// Add a new movie (Create)
+// Route to add a new movie
 router.post('/add', async (req, res) => {
     try {
         const { title, genre, status, releaseDate } = req.body;
-        const newMovie = new Movie({ title, genre, status, releaseDate });
+        const newMovie = new Movie({
+            title,
+            genre,
+            status,
+            releaseDate,
+            source: "user" // Mark as user-added
+        });
         await newMovie.save();
-        res.redirect('/movies');
+        res.redirect('/movies'); // Redirect back to the watchlist page
     } catch (error) {
         console.error(error);
         res.status(500).send('Error adding movie');
     }
 });
+
+
 
 // Edit a movie (Update - Show Edit Form)
 router.get('/edit/:id', async (req, res) => {
@@ -66,18 +75,18 @@ router.post('/delete/:id', async (req, res) => {
 });
 
 
-// Route to display all movies on the public page
+// Route for Public Movies Page
 router.get('/public-movies', async (req, res) => {
     try {
-        // Fetch all movies from the database
-        const movies = await Movie.find(); // Retrieves all documents in the movies collection
-        // Render the publicMovies.ejs template, passing the movies data
-        res.render('publicMovies', { movies });
+        const movies = await Movie.find({ source: "default" }); // Fetch default movies
+        res.render('publicMovies', { movies }); // Render publicMovies.ejs
     } catch (error) {
         console.error(error);
         res.status(500).send('Error retrieving public movies');
     }
 });
+
+
 
 
 module.exports = router;
