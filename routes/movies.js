@@ -65,4 +65,19 @@ router.post('/delete/:id', async (req, res) => {
     }
 });
 
+
+// Route to display all movies on the public page
+router.get('/public-movies', async (req, res) => {
+    try {
+        // Fetch all movies from the database
+        const movies = await Movie.find(); // Retrieves all documents in the movies collection
+        // Render the publicMovies.ejs template, passing the movies data
+        res.render('publicMovies', { movies });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error retrieving public movies');
+    }
+});
+
+
 module.exports = router;

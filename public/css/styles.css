@@ -3,19 +3,19 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: yellow;
+    background-color: orange;
 }
 
 /* Page Header */
 h1 {
     text-align: center;
-    background: #333;
+    background: black;
     color: white;
     margin: 0;
     padding: 1rem 0;
 }
 
-/* Container for Movie List */
+/* Container for Content */
 .container {
     max-width: 800px;
     margin: 2rem auto;
@@ -25,7 +25,50 @@ h1 {
     padding: 1rem;
 }
 
-/* Add Movie Button Styling */
+/* Add and Edit Movie Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Labels for Form Inputs */
+label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+/* Form Input Fields */
+input[type="text"],
+input[type="date"],
+select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Submit Button Styling */
+button[type="submit"] {
+    background-color: #007BFF;
+    color: white;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Add Movie Link */
 a {
     text-decoration: none;
     color: white;
@@ -75,4 +118,10 @@ button:hover {
 .no-movies {
     text-align: center;
     color: #555;
+}
+
+/* Add/Edit Form Title */
+.container h2 {
+    text-align: center;
+    margin-bottom: 1rem;
 }
